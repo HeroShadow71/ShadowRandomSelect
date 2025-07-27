@@ -2,7 +2,11 @@ from data import *
 from utils import *
 import tkinter as tk
 from tkinter import ttk
-from ttkthemes import ThemedStyle
+try:
+    from ttkthemes import ThemedStyle
+    ttkthemes_available = True
+except ImportError:
+    ttkthemes_available = False
 
 first_try = True
 second_try = None
@@ -81,8 +85,9 @@ root.grid_columnconfigure(0, weight=1)
 root.grid_rowconfigure(6, weight=1)
 
 # Style
-style = ThemedStyle(root)
-style.set_theme("plastik")
+if ttkthemes_available:
+    style = ThemedStyle(root)
+    style.set_theme("plastik")
 
 # Checkbuttons
 boolean_route = tk.BooleanVar()
